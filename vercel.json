@@ -6,11 +6,7 @@
       "use": "@vercel/node"
     },
     {
-      "src": "index.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "static/**/*",
+      "src": "src/**/*",
       "use": "@vercel/static"
     }
   ],
@@ -21,10 +17,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/src/index.html"
     }
-  ],
-  "projectSettings": {
-    "rootDirectory": "src"
-  }
+  ]
 }
