@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "nodemon server.js",
+    "start" : "nodemon api/server.js",
     "client": "python3 -m http.server --directory src 8888",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
