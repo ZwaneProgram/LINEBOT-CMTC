@@ -5,12 +5,13 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json());
+
 const corsOptions = {
-    origin: '*', // หรือใช้ true ก็ได้
+    origin: '*',
     methods: 'POST',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
-  };
+};
 app.use(cors(corsOptions));
 
 const PORT = 8000;
@@ -47,7 +48,6 @@ app.post('/send-message', async (req, res) => {
         });
     }
 });
-
 
 app.listen(PORT, () => {
     console.log(`Running at http://localhost:${PORT}`);

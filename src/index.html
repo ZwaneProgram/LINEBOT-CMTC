@@ -20,8 +20,8 @@
       <div>UID <span id="profileUID">UID</span></div>
       
       <div>
-      <input id="lineMessage" type="text">
-      <button onclick="sendMessage()">send message</button>
+        <input id="lineMessage" type="text">
+        <button onclick="sendMessage()">send message</button>
       </div>
     </div>
     <button id="logout" onclick="logOut()">logout</button>
@@ -31,7 +31,7 @@
       let userId = "";
 
       const main = async () => {
-        await liff.init({ liffId: "2005387694-RmynZd5l" });
+        await liff.init({ liffId: "YOUR_LIFF_ID" });
         if (liff.isLoggedIn()) {
           const profile = await liff.getProfile();
 
@@ -53,19 +53,19 @@
 
       const sendMessage = async () => {
         try {
-            if (!lineMessage.value){
+            if (!lineMessage.value) {
                 throw new Error('message not found');
             }
-            const response = await axios.post('https://c613-2405-9800-b910-5f2b-bccd-e86f-65a0-bc49.ngrok-free.app/send-message', {
+            const response = await axios.post('/api/send-message', {
                 userId,
                 message: lineMessage.value
             });
             console.log('response', response.data);
-        } catch (error){
+        } catch (error) {
             console.log('error', error);
         }
       };
-      
+
       main();
     </script>
   </body>
