@@ -5,7 +5,21 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+    origin: (origin, callback) => {
+      // ควบคุมการอนุญาตโดเมน
+      const allowedOrigins = ['https://example.com', 'https://anotherdomain.com'];
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  };
+app.use(cors(corsOptions));
 
 const PORT = 8000;
 
@@ -41,6 +55,7 @@ app.post('/send-message', async (req, res) => {
         });
     }
 });
+
 
 app.listen(PORT, () => {
     console.log(`Running at http://localhost:${PORT}`);
