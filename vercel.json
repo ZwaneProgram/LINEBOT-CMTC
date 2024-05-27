@@ -16,7 +16,7 @@
       "dest": "api/server.js"
     },
     {
-      "src": "/",
+      "src": "/(.*)",
       "dest": "/src/index.html"
     }
   ]
