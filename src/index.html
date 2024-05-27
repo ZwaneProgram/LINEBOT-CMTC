@@ -56,7 +56,7 @@
             if (!lineMessage.value) {
                 throw new Error('message not found');
             }
-            const response = await axios.post('https://a05a-2405-9800-b910-5f2b-bccd-e86f-65a0-bc49.ngrok-free.app', {
+            const response = await axios.post('https://41d3-2405-9800-b910-5f2b-bccd-e86f-65a0-bc49.ngrok-free.app/api/send-message', {
                 userId,
                 message: lineMessage.value
             });

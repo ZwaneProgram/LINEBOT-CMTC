@@ -7,7 +7,6 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-    origin: 'https://e780-2405-9800-b910-5f2b-bccd-e86f-65a0-bc49.ngrok-free.app', // specify your Vercel frontend URL
     methods: 'POST',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
