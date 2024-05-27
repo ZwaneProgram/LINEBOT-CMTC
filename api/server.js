@@ -7,8 +7,9 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-    methods: 'POST',
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    origin: 'https://linebot-fullstack.vercel.app',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'], // Added comma here
     credentials: true,
 };
 app.use(cors(corsOptions));
@@ -24,6 +25,7 @@ const headers = {
 };
 
 app.post('/api/send-message', async (req, res) => {
+    res.send('Hello from the API endpoint!');
     try {
         const { userId, message } = req.body;
         console.log(`Sending message to userId: ${userId}`);
