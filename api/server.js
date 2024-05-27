@@ -5,11 +5,7 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-
-// Configure CORS to allow requests from your Vercel domain
-app.use(cors({
-    origin: 'https://linebot-cmtc.vercel.app' // Replace with your actual Vercel domain
-}));
+app.use(cors());
 
 const PORT = 8000;
 
