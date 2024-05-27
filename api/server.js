@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 const corsOptions = {
     origin: '*', // หรือใช้ true ก็ได้
-    methods: 'GET,POST,PUT,DELETE',
+    methods: 'POST',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   };
