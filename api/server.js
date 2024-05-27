@@ -6,15 +6,7 @@ require('dotenv').config();
 const app = express();
 app.use(express.json());
 const corsOptions = {
-    origin: (origin, callback) => {
-      // ควบคุมการอนุญาตโดเมน
-      const allowedOrigins = ['https://example.com', 'https://anotherdomain.com'];
-      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: '*', // หรือใช้ true ก็ได้
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
