@@ -7,14 +7,14 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-    origin: '*',
+    origin: 'https://linebot-fullstack.vercel.app', // specify your Vercel frontend URL
     methods: 'POST',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
 };
 app.use(cors(corsOptions));
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 const LINE_BOT_API = 'https://api.line.me/v2/bot';
 const LINE_CHANNEL_ACCESS_TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN;
@@ -24,7 +24,7 @@ const headers = {
     'Authorization': `Bearer ${LINE_CHANNEL_ACCESS_TOKEN}`
 };
 
-app.post('/send-message', async (req, res) => {
+app.post('/api/send-message', async (req, res) => {
     try {
         const { userId, message } = req.body;
         console.log(`Sending message to userId: ${userId}`);
