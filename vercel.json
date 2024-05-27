@@ -4,12 +4,20 @@
     {
       "src": "api/server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "src/**/*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/send-message",
+      "src": "/api/(.*)",
       "dest": "/api/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/src/$1"
     }
   ]
 }
