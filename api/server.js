@@ -5,13 +5,7 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-const corsOptions = {
-    origin: '*', // หรือใช้ true ก็ได้
-    methods: 'GET,POST,PUT,DELETE',
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-  };
-app.use(cors(corsOptions));
+app.use(cors());
 
 const PORT = 8000;
 
@@ -35,9 +29,6 @@ app.post('/send-message', async (req, res) => {
         };
         const response = await axios.post(`${LINE_BOT_API}/message/push`, body, { headers });
         console.log('LINE API response', response.data);
-
-        // ใส่ header Access-Control-Allow-Origin เพื่ออนุญาตการเข้าถึงจากโดเมน https://linebot-cmtc.vercel.app
-        res.header("Access-Control-Allow-Origin", "https://linebot-cmtc.vercel.app");
         res.json({
             message: 'Send message success',
             responseData: response.data
@@ -50,7 +41,6 @@ app.post('/send-message', async (req, res) => {
         });
     }
 });
-
 
 app.listen(PORT, () => {
     console.log(`Running at http://localhost:${PORT}`);
