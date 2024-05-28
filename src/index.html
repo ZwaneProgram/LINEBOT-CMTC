@@ -56,7 +56,7 @@
             if (!lineMessage.value) {
                 throw new Error('message not found');
             }
-            const response = await axios.post('https://www.google.co.th/?hl=th/api/send-message', { 
+            const response = await axios.post('https://linebot-fullstack.vercel.app/api/send-message', { 
                 userId,
                 message: lineMessage.value
             });
