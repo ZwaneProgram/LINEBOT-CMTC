@@ -25,7 +25,6 @@ const headers = {
 };
 
 app.post('/api/send-message', async (req, res) => {
-    res.send('Hello from the API endpoint!');
     try {
         const { userId, message } = req.body;
         console.log(`Sending message to userId: ${userId}`);
