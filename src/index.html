@@ -80,25 +80,31 @@
     };
 
     const registerUser = async () => {
-      const studentId = document.getElementById('studentId').value;
-      const studentName = document.getElementById('studentName').value;
-      const gradeLevel = document.getElementById('gradeLevel').value;
-      const password = document.getElementById('password').value;
+  const studentId = document.getElementById('studentId').value;
+  const studentName = document.getElementById('studentName').value;
+  const gradeLevel = document.getElementById('gradeLevel').value;
+  const password = document.getElementById('password').value;
 
-      try {
-        const response = await axios.post('http://localhost:8000/api/register', {
-          studentId,
-          studentName,
-          gradeLevel,
-          password
-        });
-        console.log('Registration Response', response.data);
-        alert('User registered successfully!');
-      } catch (error) {
-        console.log('Registration Error', error);
-        alert('Error registering user. Please try again.');
-      }
-    };
+  console.log('Student ID:', studentId);
+  console.log('Student Name:', studentName);
+  console.log('Grade Level:', gradeLevel);
+  console.log('Password:', password);
+
+  try {
+    const response = await axios.post('http://localhost:8000/api/register', {
+      studentId,
+      studentName,
+      gradeLevel,
+      password
+    });
+    console.log('Registration Response', response.data);
+    alert('User registered successfully!');
+  } catch (error) {
+    console.log('Registration Error', error);
+    alert('Error registering user. Please try again.');
+  }
+};
+
 
     main();
   </script>
