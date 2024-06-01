@@ -17,9 +17,9 @@
   <div id="registrationForm">
     <form id="registrationForm">
       <h2>Registration Form</h2>
-      <input type="text" id="studentId" placeholder="Student ID" /><br />
-      <input type="text" id="studentName" placeholder="Student Name" /><br />
-      <input type="text" id="gradeLevel" placeholder="Grade Level" /><br />
+      <input type="text" id="student_id" placeholder="Student ID" /><br />
+      <input type="text" id="student_name" placeholder="Student Name" /><br />
+      <input type="text" id="grade_level" placeholder="Grade Level" /><br />
       <input type="password" id="password" placeholder="Password" /><br />
       <button type="button" onclick="registerUser()">Register</button>
     </form>
@@ -82,21 +82,21 @@
     };
 
     const registerUser = async () => {
-      const studentId = document.getElementById('studentId').value;
-      const studentName = document.getElementById('studentName').value;
-      const gradeLevel = document.getElementById('gradeLevel').value;
+      const studentId = document.getElementById('student_id').value;
+      const studentName = document.getElementById('student_name').value;
+      const gradeLevel = document.getElementById('grade_level').value;
       const password = document.getElementById('password').value;
 
-      console.log('Student ID:', studentId);
-      console.log('Student Name:', studentName);
-      console.log('Grade Level:', gradeLevel);
+      console.log('Student ID:', student_id);
+      console.log('Student Name:', student_name);
+      console.log('Grade Level:', grade_level);
       console.log('Password:', password);
 
       try {
         const response = await axios.post('http://localhost:8000/api/register', {
-          studentId,
-          studentName,
-          gradeLevel,
+          student_id,
+          student_name,
+          grade_level,
           password
         });
         console.log('Registration Response', response.data);
