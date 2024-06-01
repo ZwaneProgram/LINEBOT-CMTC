@@ -86,7 +86,7 @@
       const password = document.getElementById('password').value;
 
       try {
-        const response = await axios.post('https://linebot-fullstack.vercel.app/api/register', {
+        const response = await axios.post('http://localhost:8000/api/register', {
           studentId,
           studentName,
           gradeLevel,
