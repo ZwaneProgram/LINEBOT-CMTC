@@ -1,17 +1,33 @@
 const express = require('express');
+const axios = require('axios');
 const cors = require('cors');
 const { Pool } = require('pg');
 require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+    origin: 'https://linebot-fullstack.vercel.app',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+};
+app.use(cors(corsOptions));
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
 });
 
 const PORT = process.env.PORT || 8000;
+
+const LINE_BOT_API = 'https://api.line.me/v2/bot';
+const LINE_CHANNEL_ACCESS_TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN;
+
+const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${LINE_CHANNEL_ACCESS_TOKEN}`
+};
 
 app.post('/api/register', async (req, res) => {
     const { student_id, student_name, grade_level, password } = req.body;
@@ -48,33 +64,28 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-
 app.post('/api/send-message', async (req, res) => {
-    const { userId, message } = req.body;
-
     try {
-        // Here you can implement the logic for sending messages to the user with the provided userId
-        // For example, you can use the Line Messaging API or any other messaging service you're using
-
-        // Example using the Line Messaging API
-        const lineMessageBody = {
+        const { userId, message } = req.body;
+        console.log(`Sending message to userId: ${userId}`);
+        const body = {
             to: userId,
             messages: [
                 { type: 'text', text: message }
             ]
         };
-        const response = await axios.post('https://api.line.me/v2/bot/message/push', lineMessageBody, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${process.env.LINE_CHANNEL_ACCESS_TOKEN}`
-            }
+        const response = await axios.post(`${LINE_BOT_API}/message/push`, body, { headers });
+        console.log('LINE API response', response.data);
+        res.json({
+            message: 'Send message success',
+            responseData: response.data
         });
-
-        console.log('Message sent successfully:', response.data);
-        res.json({ success: true });
     } catch (error) {
-        console.error('Error sending message:', error);
-        res.status(500).json({ error: 'Failed to send message' });
+        console.error('Error sending message', error.response ? error.response.data : error.message);
+        res.status(500).json({
+            message: 'Send message failed',
+            error: error.response ? error.response.data : error.message
+        });
     }
 });
 
