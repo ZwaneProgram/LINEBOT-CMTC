@@ -82,31 +82,30 @@
     };
 
     const registerUser = async () => {
-  const studentId = document.getElementById('student_id').value;
-  const studentName = document.getElementById('student_name').value;
-  const gradeLevel = document.getElementById('grade_level').value;
-  const password = document.getElementById('password').value;
+      const studentId = document.getElementById('student_id').value;
+      const studentName = document.getElementById('student_name').value;
+      const gradeLevel = document.getElementById('grade_level').value;
+      const password = document.getElementById('password').value;
 
-  console.log('Student ID:', studentId);  // <-- Use camel case here
-  console.log('Student Name:', studentName);  // <-- Use camel case here
-  console.log('Grade Level:', gradeLevel);  // <-- Use camel case here
-  console.log('Password:', password);  // <-- Use camel case here
+      console.log('Student ID:', student_id);
+      console.log('Student Name:', student_name);
+      console.log('Grade Level:', grade_level);
+      console.log('Password:', password);
 
-  try {
-    const response = await axios.post('http://localhost:8000/api/register', {
-      student_id: studentId,  // <-- Use underscore case here
-      student_name: studentName,  // <-- Use underscore case here
-      grade_level: gradeLevel,  // <-- Use underscore case here
-      password: password  // <-- Use underscore case here
-    });
-    console.log('Registration Response', response.data);
-    alert('User registered successfully!');
-  } catch (error) {
-    console.log('Registration Error', error);
-    alert('Error registering user. Please try again.');
-  }
-};
-
+      try {
+        const response = await axios.post('http://localhost:8000/api/register', {
+          student_id,
+          student_name,
+          grade_level,
+          password
+        });
+        console.log('Registration Response', response.data);
+        alert('User registered successfully!');
+      } catch (error) {
+        console.log('Registration Error', error);
+        alert('Error registering user. Please try again.');
+      }
+    };
 
 
     main();
