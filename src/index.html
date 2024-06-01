@@ -15,12 +15,14 @@
 
 <body>
   <div id="registrationForm">
-    <h2>Registration Form</h2>
-    <input type="text" id="studentId" placeholder="Student ID" /><br />
-    <input type="text" id="studentName" placeholder="Student Name" /><br />
-    <input type="text" id="gradeLevel" placeholder="Grade Level" /><br />
-    <input type="password" id="password" placeholder="Password" /><br />
-    <button onclick="registerUser()">Register</button>
+    <form id="registrationForm">
+      <h2>Registration Form</h2>
+      <input type="text" id="studentId" placeholder="Student ID" /><br />
+      <input type="text" id="studentName" placeholder="Student Name" /><br />
+      <input type="text" id="gradeLevel" placeholder="Grade Level" /><br />
+      <input type="password" id="password" placeholder="Password" /><br />
+      <button type="button" onclick="registerUser()">Register</button>
+    </form>
   </div>
 
   <div id="lineprofile" style="display: none;">
@@ -80,30 +82,30 @@
     };
 
     const registerUser = async () => {
-  const studentId = document.getElementById('studentId').value;
-  const studentName = document.getElementById('studentName').value;
-  const gradeLevel = document.getElementById('gradeLevel').value;
-  const password = document.getElementById('password').value;
+      const studentId = document.getElementById('studentId').value;
+      const studentName = document.getElementById('studentName').value;
+      const gradeLevel = document.getElementById('gradeLevel').value;
+      const password = document.getElementById('password').value;
 
-  console.log('Student ID:', studentId);
-  console.log('Student Name:', studentName);
-  console.log('Grade Level:', gradeLevel);
-  console.log('Password:', password);
+      console.log('Student ID:', studentId);
+      console.log('Student Name:', studentName);
+      console.log('Grade Level:', gradeLevel);
+      console.log('Password:', password);
 
-  try {
-    const response = await axios.post('http://localhost:8000/api/register', {
-      studentId,
-      studentName,
-      gradeLevel,
-      password
-    });
-    console.log('Registration Response', response.data);
-    alert('User registered successfully!');
-  } catch (error) {
-    console.log('Registration Error', error);
-    alert('Error registering user. Please try again.');
-  }
-};
+      try {
+        const response = await axios.post('http://localhost:8000/api/register', {
+          studentId,
+          studentName,
+          gradeLevel,
+          password
+        });
+        console.log('Registration Response', response.data);
+        alert('User registered successfully!');
+      } catch (error) {
+        console.log('Registration Error', error);
+        alert('Error registering user. Please try again.');
+      }
+    };
 
 
     main();
