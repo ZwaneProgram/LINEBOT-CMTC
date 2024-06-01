@@ -87,9 +87,9 @@
 
       try {
         const response = await axios.post('http://localhost:8000/api/register', {
-          studentId,
-          studentName,
-          gradeLevel,
+          student_id,
+          student_name,
+          grade_level,
           password
         });
         console.log('Registration Response', response.data);
