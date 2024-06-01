@@ -48,6 +48,36 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
+
+app.post('/api/send-message', async (req, res) => {
+    const { userId, message } = req.body;
+
+    try {
+        // Here you can implement the logic for sending messages to the user with the provided userId
+        // For example, you can use the Line Messaging API or any other messaging service you're using
+
+        // Example using the Line Messaging API
+        const lineMessageBody = {
+            to: userId,
+            messages: [
+                { type: 'text', text: message }
+            ]
+        };
+        const response = await axios.post('https://api.line.me/v2/bot/message/push', lineMessageBody, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.LINE_CHANNEL_ACCESS_TOKEN}`
+            }
+        });
+
+        console.log('Message sent successfully:', response.data);
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error sending message:', error);
+        res.status(500).json({ error: 'Failed to send message' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
