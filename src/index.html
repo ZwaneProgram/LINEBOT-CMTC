@@ -71,7 +71,7 @@
         if (!lineMessage.value) {
           throw new Error('Message not found');
         }
-        const response = await axios.post('http://localhost:8000/api/send-message', {
+        const response = await axios.post('https://linebot-fullstack.vercel.app/api/send-message', {
           userId,
           message: lineMessage.value
         });
@@ -87,17 +87,17 @@
   const gradeLevel = document.getElementById('grade_level').value;
   const password = document.getElementById('password').value;
 
-  console.log('Student ID:', studentId);  // <-- Use camel case here
-  console.log('Student Name:', studentName);  // <-- Use camel case here
-  console.log('Grade Level:', gradeLevel);  // <-- Use camel case here
-  console.log('Password:', password);  // <-- Use camel case here
+  console.log('Student ID:', studentId);
+  console.log('Student Name:', studentName); 
+  console.log('Grade Level:', gradeLevel);
+  console.log('Password:', password);
 
   try {
-    const response = await axios.post('http://localhost:8000/api/register', {
-      student_id: studentId,  // <-- Use underscore case here
-      student_name: studentName,  // <-- Use underscore case here
-      grade_level: gradeLevel,  // <-- Use underscore case here
-      password: password  // <-- Use underscore case here
+    const response = await axios.post('https://linebot-fullstack.vercel.app/api/register', {
+      student_id: studentId,
+      student_name: studentName,
+      grade_level: gradeLevel,
+      password: password
     });
     console.log('Registration Response', response.data);
     alert('User registered successfully!');
