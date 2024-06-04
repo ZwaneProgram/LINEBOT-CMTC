@@ -69,7 +69,7 @@
     const sendMessage = async () => {
       try {
         if (!lineMessage.value) {
-          throw new Error('Message not found');
+          throw new Error('Message not founds');
         }
         const response = await axios.post('https://linebot-fullstack.vercel.app/api/send-message', {
           userId,
